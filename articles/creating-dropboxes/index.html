@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Creating Turnin Dropboxes on the Bellagio
+Server - Miguel Castillo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/assets/profile.svg">
+  <link rel="apple-touch-icon" href="/assets/profile.svg">
+  <link rel="shortcut icon" href="/assets/profile.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="page page-article">
+    <header>
+      <a class="brand" href="/" aria-label="Go to home">
+        <div class="brand-mark">
+          <img src="/assets/profile.svg" alt="Profile icon" class="brand-icon">
+        </div>
+        <div class="brand-text">miguelcastillo</div>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+        <span class="line"></span>
+      </button>
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/articles/" class="active">Articles</a>
+        <a href="/projects/">Projects</a>
+  </nav>
+</header>
+
+    <main>
+      <section class="article-hero">
+        <h1 class="article-page-title">Creating Turnin Dropboxes on the
+Bellagio Server</h1>
+                <div class="article-meta">2025 Oct 08</div>
+              </section>
+
+      <section class="article-layout">
+                <aside class="article-toc" aria-label="Table of contents">
+          <div class="toc-header">
+            <span class="toc-label">On this page</span>
+            <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-list">
+              <span class="toc-toggle-text">Toggle</span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="toc-list" id="toc-list">
+            <ul>
+            <li><a href="#using-the-mkassign-command"
+            id="toc-using-the-mkassign-command">Using the
+            <code>mkassign</code> command</a></li>
+            </ul>
+          </div>
+        </aside>
+                <article class="article-content">
+          <section id="using-the-mkassign-command" class="level2">
+          <h2>Using the <code>mkassign</code> command</h2>
+          <ol type="1">
+          <li><p>After signing in to the Bellagio server, use the
+          <code>astyle</code> command:</p>
+          <pre><code>$ mkassign</code></pre></li>
+          <li><p>Fill in the requested details:</p>
+          <div class="sourceCode" id="cb2"><pre
+          class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkassign</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> course identifier <span class="er">(</span><span class="ex">e.g.,</span> cs135, cs202-1001<span class="kw">)</span><span class="bu">:</span> {{cs135_4203}}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> project identifier <span class="er">(</span><span class="ex">e.g.,</span> pa02, lab03b, exam1<span class="kw">)</span><span class="bu">:</span> {{lab06b}}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> closing date <span class="er">(</span><span class="ex">yyyy-mm-dd</span><span class="kw">)</span><span class="bu">:</span> {{2025-04-04}}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> closing time <span class="er">(</span><span class="ex">hh:mm,</span> 24-hour format<span class="kw">)</span><span class="bu">:</span> {{00:04}}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Enter</span> project description <span class="er">(</span><span class="ex">e.g.,</span> <span class="st">&#39;Generate sales report&#39;</span><span class="kw">)</span><span class="bu">:</span> {{Void Functions Lab}}</span></code></pre></div>
+          <blockquote>
+          <p>NOTE: These will appear one at a time rather than all at
+          once.</p>
+          </blockquote></li>
+          <li><p>If all details are accurate, user will see the
+          following terminal output:</p>
+          <pre><code>Successfully created the project {{lab06b}} in the course {{cs135_4203}}.
+Project will be disabled at {{00:04}} on {{2025-04-04}}</code></pre></li>
+          </ol>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2025 Miguel Castillo</span>
+    </footer>
+  </div>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

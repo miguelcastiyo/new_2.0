@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Miguel Castillo - Articles</title>
+  <title>$title$ - Miguel Castillo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/assets/profile.svg">
   <link rel="apple-touch-icon" href="/assets/profile.svg">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  <div class="page">
+  <div class="page page-article">
     <header>
       <a class="brand" href="/" aria-label="Go to home">
         <div class="brand-mark">
@@ -28,23 +28,34 @@
         <a href="/about/">About</a>
         <a href="/articles/" class="active">Articles</a>
         <a href="/projects/">Projects</a>
-      </nav>
-    </header>
+  </nav>
+</header>
 
     <main>
-      <section class="intro">
-        <h1>Articles</h1>
-        <p>
-          Coming soon.
-        </p>
+      <section class="article-hero">
+        <h1 class="article-page-title">$title$</h1>
+        $if(date_display)$
+        <div class="article-meta">$date_display$</div>
+        $endif$
       </section>
 
-      <section class="posts">
-        <h2 class="posts-title">Latest</h2>
-
-        <article class="post">
-          <div class="post-date">8 Oct 2025</div>
-          <div class="post-title"><a href="/articles/creating-dropboxes/">Creating Dropboxes</a></div>
+      <section class="article-layout">
+        $if(toc)$
+        <aside class="article-toc" aria-label="Table of contents">
+          <div class="toc-header">
+            <span class="toc-label">On this page</span>
+            <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-list">
+              <span class="toc-toggle-text">Toggle</span>
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="toc-list" id="toc-list">
+            $table-of-contents$
+          </div>
+        </aside>
+        $endif$
+        <article class="article-content">
+          $body$
         </article>
       </section>
     </main>

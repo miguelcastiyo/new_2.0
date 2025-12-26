@@ -17,4 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   toggle.addEventListener("click", toggleNav);
   links.forEach((link) => link.addEventListener("click", closeNav));
+
+  const tocToggle = document.querySelector(".toc-toggle");
+  const tocList = document.getElementById("toc-list");
+  if (tocToggle && tocList) {
+    const toggleToc = () => {
+      const isOpen = tocList.classList.toggle("is-open");
+      tocToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    tocToggle.addEventListener("click", toggleToc);
+  }
 });
