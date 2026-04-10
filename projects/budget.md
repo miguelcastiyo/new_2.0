@@ -32,6 +32,7 @@ The backend was architected and built independently. Once the databases and API 
 ### Backend
 - Vanilla PHP (shoutout Cedric!)
 - Hosted on AWS Lightsail
+- MySQL Databases
 
 ### Front-End
 - Mostly TypeScript
