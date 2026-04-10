@@ -23,6 +23,10 @@ const normalizeUrl = (url) => {
 };
 
 const isExternalUrl = (url) => /^https?:\/\//i.test(url);
+const themeIcons = {
+  light: "fa-solid fa-moon",
+  dark: "fa-solid fa-sun",
+};
 
 const renderInlineMarkdown = (text) => {
   const pattern =
@@ -380,6 +384,46 @@ const initializeTableOfContents = () => {
   tocToggle.addEventListener("click", toggleToc);
 };
 
+const initializeThemeToggle = () => {
+  const toggle = document.querySelector("[data-theme-toggle]");
+  if (!toggle) {
+    return;
+  }
+
+  const icon = toggle.querySelector("i");
+
+  const applyThemeState = (theme) => {
+    const isDark = theme === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+    toggle.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light mode" : "Switch to dark mode"
+    );
+    toggle.setAttribute(
+      "title",
+      isDark ? "Switch to light mode" : "Switch to dark mode"
+    );
+
+    if (icon) {
+      icon.className = themeIcons[isDark ? "dark" : "light"];
+    }
+  };
+
+  const storedTheme =
+    document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  applyThemeState(storedTheme);
+
+  toggle.addEventListener("click", () => {
+    const nextTheme =
+      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch (error) {}
+    applyThemeState(nextTheme);
+  });
+};
+
 const initializeClickableCards = () => {
   const cards = document.querySelectorAll("[data-card-link]");
   if (cards.length === 0) {
@@ -485,6 +529,7 @@ const initializeMarkdownArticle = async () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeThemeToggle();
   initializeNavigation();
   initializeTableOfContents();
   initializeClickableCards();

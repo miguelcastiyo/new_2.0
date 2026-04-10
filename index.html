@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <title>Miguel Castillo - Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("theme");
+        document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="/assets/profile.svg">
   <link rel="apple-touch-icon" href="/assets/profile.svg">
   <link rel="shortcut icon" href="/assets/profile.svg">
@@ -20,6 +30,10 @@
         </div>
         <div class="brand-text">miguelcastillo</div>
       </a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        <span class="sr-only">Toggle color theme</span>
+      </button>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
         <span class="line"></span>
       </button>
@@ -35,8 +49,8 @@
         <h1>Hello :)</h1>
         <p>
           I'm Miguel, an associate product manager @ AXS. I like learning about
-          new ways to improve my product management skills
-          and building small tools that make life a little easier.
+          new ways to improve my product management skills, building small tools 
+          that make life a little easier, and overall tinkering with tech hardware and software.
         </p>
 
         <div class="social">

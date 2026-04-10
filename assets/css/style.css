@@ -1,12 +1,51 @@
 :root {
+  color-scheme: light;
   --bg: #f7f7f4;
+  --surface: #ffffff;
+  --surface-hover: #fcfcfa;
+  --surface-muted: #f0f0ec;
+  --surface-overlay: rgba(0, 0, 0, 0.04);
   --text: #111111;
   --muted: #555555;
   --border: #dddddd;
+  --border-strong: #cfcfcf;
   --link: #111111;
   --link-hover: #000000;
   --icon-bg: #111111;
   --icon-fg: #ffffff;
+  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.07);
+  --shadow-medium: 0 12px 28px rgba(0, 0, 0, 0.05);
+  --shadow-large: 0 14px 34px rgba(0, 0, 0, 0.06);
+  --focus-ring: #111111;
+  --code-inline-bg: #f0f0ec;
+  --code-bg: #111111;
+  --code-text: #f7f7f4;
+  --code-border: #000000;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121416;
+  --surface: #181c1f;
+  --surface-hover: #1d2225;
+  --surface-muted: #22272b;
+  --surface-overlay: rgba(255, 255, 255, 0.08);
+  --text: #f2f2ed;
+  --muted: #a7adb3;
+  --border: #30363b;
+  --border-strong: #41484e;
+  --link: #f2f2ed;
+  --link-hover: #ffffff;
+  --icon-bg: #f2f2ed;
+  --icon-fg: #121416;
+  --shadow-soft: 0 12px 24px rgba(0, 0, 0, 0.28);
+  --shadow-medium: 0 16px 30px rgba(0, 0, 0, 0.3);
+  --shadow-large: 0 20px 40px rgba(0, 0, 0, 0.34);
+  --focus-ring: #f2f2ed;
+  --code-inline-bg: #22272b;
+  --code-bg: #0d0f10;
+  --code-text: #f2f2ed;
+  --code-border: #2a2f33;
 }
 
 html {
@@ -26,6 +65,7 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -48,7 +88,7 @@ a:hover {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 8px 0 40px;
   gap: 16px;
 }
@@ -72,7 +112,7 @@ header {
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 600;
-  background: #ffffff;
+  background: var(--surface);
 }
 
 .brand-icon {
@@ -98,19 +138,46 @@ header {
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
+  margin-left: auto;
 }
 
+.theme-toggle,
 .nav-toggle {
-  display: none;
   align-items: center;
   justify-content: center;
   width: 34px;
   height: 34px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #ffffff;
+  background: var(--surface);
+  color: var(--text);
   cursor: pointer;
   padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle {
+  display: inline-flex;
+}
+
+.theme-toggle:hover,
+.nav-toggle:hover {
+  background: var(--surface-muted);
+  border-color: var(--border-strong);
+}
+
+.theme-toggle:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.theme-toggle i {
+  font-size: 0.9rem;
+}
+
+.nav-toggle {
+  display: none;
 }
 
 .nav-toggle .line {
@@ -152,7 +219,7 @@ header {
 .nav a:hover,
 .nav a.active {
   color: var(--text);
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--surface-overlay);
 }
 
 .header-icons {
@@ -185,6 +252,18 @@ header {
   height: 1px;
   background: var(--text);
   width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 main {
@@ -261,18 +340,18 @@ main {
   padding: 14px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: #ffffff;
+  background: var(--surface);
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .post:hover {
-  border-color: #cfcfcf;
-  background: #fcfcfa;
+  border-color: var(--border-strong);
+  background: var(--surface-hover);
 }
 
 .post:focus-visible {
-  outline: 2px solid #111111;
+  outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
@@ -338,7 +417,7 @@ main {
   header {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 10px;
     padding-bottom: 24px;
@@ -349,6 +428,7 @@ main {
   }
 
   .nav {
+    margin-left: 0;
     width: 100%;
     display: none;
     flex-direction: column;
@@ -356,10 +436,10 @@ main {
     gap: 8px;
     padding: 10px 12px;
     margin-top: 8px;
-    background: #ffffff;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--shadow-soft);
     order: 3;
   }
 
@@ -387,6 +467,10 @@ main {
 
   header {
     padding-bottom: 60px;
+  }
+
+  .theme-toggle {
+    order: 3;
   }
 
   .intro h1 {
@@ -463,10 +547,10 @@ main {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 12px 12px 8px;
-  background: #ffffff;
+  background: var(--surface);
   position: sticky;
   top: 0;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-medium);
   width: 220px;
 }
 
@@ -527,7 +611,7 @@ main {
 
 .toc-list a:hover {
   color: var(--text);
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--surface-overlay);
 }
 
 .article-content {
@@ -535,11 +619,11 @@ main {
   width: 100%;
   max-width: 760px;
   justify-self: start;
-  background: #ffffff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-large);
   overflow: hidden;
 }
 
@@ -614,7 +698,7 @@ main {
 }
 
 .article-content code {
-  background: #f0f0ec;
+  background: var(--code-inline-bg);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 2px 6px;
@@ -622,12 +706,12 @@ main {
 }
 
 .article-content pre {
-  background: #111111;
-  color: #f7f7f4;
+  background: var(--code-bg);
+  color: var(--code-text);
   border-radius: 12px;
   padding: 14px 16px;
   overflow: auto;
-  border: 1px solid #000000;
+  border: 1px solid var(--code-border);
   margin: 18px 0;
   line-height: 1.5;
   max-width: 100%;
@@ -659,7 +743,7 @@ main {
 }
 
 .article-content th {
-  background: #f0f0ec;
+  background: var(--surface-muted);
 }
 
 .article-content img {
@@ -668,6 +752,7 @@ main {
   margin: 18px auto;
   border: 1px solid var(--border);
   border-radius: 12px;
+  background: var(--surface);
 }
 
 .article-figure {
@@ -735,7 +820,7 @@ main {
 
   .article-content {
     padding: 22px 22px 24px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-medium);
     border-radius: 12px;
   }
 
