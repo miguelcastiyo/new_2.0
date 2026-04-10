@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Miguel Castillo - Spin!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("theme");
+        document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/assets/profile.svg">
+  <link rel="apple-touch-icon" href="/assets/profile.svg">
+  <link rel="shortcut icon" href="/assets/profile.svg">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="page page-article">
+    <header>
+      <a class="brand" href="/" aria-label="Go to home">
+        <div class="brand-mark">
+          <img src="/assets/profile.svg" alt="Profile icon" class="brand-icon">
+        </div>
+        <div class="brand-text">miguelcastillo</div>
+      </a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-theme-toggle>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        <span class="sr-only">Toggle color theme</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+        <span class="line"></span>
+      </button>
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/projects/" class="active">Projects</a>
+      </nav>
+    </header>
+
+    <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/projects/">Projects</a>
+        <span class="breadcrumb-separator" aria-hidden="true">/</span>
+        <span aria-current="page" data-breadcrumb-current>Spin!</span>
+      </nav>
+
+      <section class="article-hero">
+        <h1 class="article-page-title" data-markdown-title>Spin!</h1>
+        <p class="article-meta">Project summary, background, tech notes, and feature overview.</p>
+      </section>
+
+      <section class="article-layout">
+        <article
+          class="article-content"
+          data-markdown-source="../spin!.md"
+          data-extract-title="true"
+          aria-live="polite"
+        >
+          <p class="article-loading">Loading project summary...</p>
+        </article>
+
+        <aside class="article-toc" aria-label="Table of contents" hidden>
+          <div class="toc-header">
+            <div class="toc-label">Sections</div>
+            <button class="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-list">
+              Toggle
+            </button>
+          </div>
+          <div class="toc-list" id="toc-list">
+            <div id="TOC"></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 Miguel Castillo</span>
+    </footer>
+  </div>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
