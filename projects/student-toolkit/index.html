@@ -4,23 +4,7 @@
   <meta charset="UTF-8" />
   <title>Miguel Castillo - Student Toolkit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>
-    (() => {
-      try {
-        const theme = localStorage.getItem("theme");
-        document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
-      } catch (error) {
-        document.documentElement.dataset.theme = "light";
-      }
-    })();
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PNGVGH6KBW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag("js", new Date());
-    gtag("config", "G-PNGVGH6KBW");
-  </script>
+  <script src="/assets/js/head.js"></script>
   <link rel="icon" type="image/svg+xml" href="/assets/profile.svg">
   <link rel="apple-touch-icon" href="/assets/profile.svg">
   <link rel="shortcut icon" href="/assets/profile.svg">
