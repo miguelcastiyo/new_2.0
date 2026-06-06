@@ -1,50 +1,223 @@
 # Budget
 
-![](/assets/images/budget_login.png "Budget")
+A personal budgeting app built to replace the Google Sheet my partner and I used to track our monthly spending.
 
-> Project can be viewed [here](budget.miguelcastillo.info), although it is currently invite-only :) 
+The project started as a way to see how far modern AI-assisted development tools could take a complete software project. What began as an experiment quickly turned into a real product that I now use to manage my finances.
 
-## Background
-My partner and I have previously kept track of our monthly spending via a Google Sheet. 
-It got the job done but with the advancement of AI tools, I wanted to give a shot at using AI to build a full, end-to-end budgeting app complete with auth and the ability to support multiple users for us to try out. 
-Overall, it was a lot of fun and a great learning experience. I really enjoyed architecting the backend, especially the MySQL databases.
+While AI significantly accelerated development, this project reinforced something I strongly believe: understanding systems, architecture, and product design is still what matters most. AI helped me write code faster, but designing the database, API contracts, user experience, and overall system architecture was where most of the real work happened.
 
-## Lessons Learned
-AI tools are really useful to use for building projects. They reduce the amount of time spent on writing boilerplate code. Simply put, you get to the implementation part of building a lot faster.
-With that said, it is still critical to have a good understanding of systems rather than letting AI do all of the work. I spent a lot of time architecting the backend. Providing AI tools with well-thought-out architecture is the key.
-Another cool thing I learned through this project that I did not have previous exposure to was GitHub Actions. Knowing how to set those up for my specific project makes deploying changes from development to production easy as I introduce new features.
+The app is currently invite-only while I continue to iterate and improve the experience.
 
-## Features
-- Mobile-first design
-- Google Sign-In
-- CSV data import/export
-- Ability to set a monthly spend budget
-    - Allows user to split monthly income into the 50/30/20 budgeting method (for me, this is what makes budgeting simple).
--  Easy, data-rich, transaction logging
-- Spend breakdowns and insights
-- Easy filtering of all transactions to identify spending trends (am I spending too much on eating out?).
+---
 
-## Tech Stack
-The project is split into separate backend and front-end repositories.
-The backend was architected and built independently. Once the databases and API endpoints were sorted out, I created a Postman collection for testing. This made building the front end trivial and allowed me to design the front-end interfaces with the boundaries created by my API data contracts.
+# Background
 
-### Backend
+My partner and I tracked our spending using a shared Google Sheet for a while.
+
+It worked surprisingly well. We knew where our money was going, could track spending over time, and had complete flexibility over how the data was organized.
+
+The problem was that entering transactions was inconvenient, especially on mobile. Finding trends required manual analysis, and many of the workflows felt like work rather than something that naturally fit into everyday life.
+
+I wasn't interested in building a budgeting app that tried to manage every aspect of someone's financial life. There are already plenty of products that do that.
+
+Instead, I wanted to build something focused on a simple question:
+
+> Where is my money going, and am I spending it the way I intended?
+
+That goal heavily influenced every product decision that followed.
+
+---
+
+# Product Philosophy
+
+The core principle behind my budget app is simplicity.
+
+Many budgeting applications become complicated because they try to solve every financial problem imaginable. They connect to banks, calculate retirement projections, forecast investment growth, track net worth, and provide dozens of reports.
+
+While those features can be useful, they often come at the expense of usability.
+
+I wanted Budget to focus on the fundamentals:
+
+- Quickly record spending
+- Understand spending habits
+- Stay within a monthly budget
+- Make informed decisions about future spending
+- Data privacy
+
+If an additional feature made the product harder to understand or maintain without providing significant value, it was usually left out.
+
+---
+
+# Key Features
+
+## Mobile-First Design
+
+The application was designed mobile-first so that entering a transaction takes only a few seconds.
+
+Many desktop interactions adapt into mobile trays and bottom sheets rather than traditional modal windows, helping the experience feel more natural on smaller screens.
+
+---
+
+## Google Sign-In
+
+Authentication is handled through Google Sign-In.
+This removes the need to manage passwords.
+
+---
+
+## Transaction Management
+
+At its core, Budget is a transaction tracking application.
+
+Users can:
+
+- Add transactions
+- Edit transactions
+- Delete transactions
+- Categorize spending
+- Track income
+- Search historical activity
+- Filter spending data
+
+A significant amount of effort went into making transaction entry feel fast while still collecting enough information to generate useful insights later.
+
+---
+
+## Budget Planning
+
+Users can define monthly spending targets and organize their finances using the 50/30/20 budgeting framework.
+
+I have always appreciated the simplicity of the 50/30/20 approach:
+
+- 50% Needs
+- 30% Wants
+- 20% Savings
+
+Rather than overwhelming users with dozens of financial categories and rules, the application provides a straightforward framework that is easy to understand and maintain.
+
+---
+
+## Spending Insights
+
+The application automatically generates spending breakdowns and visualizations that help answer questions such as:
+
+- Am I spending too much eating out?
+- How much have I spent on groceries this month?
+- Which categories are increasing over time?
+- Where is most of my discretionary spending going?
+
+The emphasis is on surfacing actionable information rather than overwhelming users with data.
+
+---
+
+## CSV Import & Export
+
+Importing historical transactions was important because I was migrating years of budgeting data from spreadsheets.
+
+Users can import transaction data from external sources and export their data whenever needed.
+I really like the way Notion guides users through importing database tables. I took inspiration from that to support flexible column mapping so users are not forced into a rigid file format when exporrting.
+
+---
+
+# Architecture & Technical Decisions
+
+One of the biggest decisions I made was to build the backend first.
+
+Before building any front-end interfaces, I focused on:
+
+- Database design
+- API architecture
+- Authentication flows
+- Data contracts
+- Business logic
+
+Once the API layer was stable, I built and tested endpoints through Postman before writing the front end.
+
+This approach created clear boundaries between systems and made front-end development significantly easier because the interfaces were built against stable API contracts rather than constantly changing requirements.
+
+---
+
+# Tech Stack
+
+## Backend
+
 - Vanilla PHP
-- MySQL Databases
+- MySQL
 
-### Front-End
+The backend handles:
+
+- Authentication
+- User management
+- Budget management
+- Transaction processing
+- Reporting
+- Data imports and exports
+
+I particularly enjoyed designing the database architecture for this project. While databases are rarely the most visible part of an application, they often determine how maintainable and extensible the product becomes over time.
+
+---
+
+## Front End
+
 - TypeScript
-- NodeJS
+- Node.js
 
-### Other Tools & Technologies Used
-- [Google Auth](https://developers.google.com/identity/protocols/oauth2)
-- [AWS Lightsail](https://aws.amazon.com/free/compute/lightsail/?trk=e219cf17-9f99-4f53-b40b-9c3dd6744d9d&sc_channel=ps&ef_id=Cj0KCQjwkYLPBhC3ARIsAIyHi3SF89YQlgtQSDN-8OfNEhP_Xapr6i0kwNf3npijGTTEOg3HwveKuI4aAulvEALw_wcB:G:s&s_kwcid=AL!4422!3!798550402708!p!!g!!aws%20lightsail%20web%20hosting!23610840664!193209707266&gad_campaignid=23610840664&gbraid=0AAAAADjHtp9eI0BJ733xkaQhLByexh1-d&gclid=Cj0KCQjwkYLPBhC3ARIsAIyHi3SF89YQlgtQSDN-8OfNEhP_Xapr6i0kwNf3npijGTTEOg3HwveKuI4aAulvEALw_wcB)
-- [Postman](https://learning.postman.com/)
-- [Figma](https://help.figma.com/hc/en-us)
-- [Codex](https://developers.openai.com/codex/ide)
-- [v0](https://v0.app/docs)
-- [Vercel](https://vercel.com/docs)
-- [GitHub](https://docs.github.com/en)
+The front end consumes the backend APIs and provides the budgeting experience across desktop and mobile devices.
 
-## Screens
-![](/assets/images/budget_screens.png "Budget Screens")
+---
+
+## Infrastructure & Tooling
+
+- AWS Lightsail
+- Google Authentication
+- GitHub Actions
+- GitHub
+- Postman
+- Figma
+- Vercel
+- Codex
+- v0
+
+One of the more valuable skills I picked up during this project was working with GitHub Actions.
+
+Automated deployments have made it much easier to ship updates, test changes, and maintain separate development and production environments.
+
+---
+
+# Lessons Learned
+
+This project taught me a lot about what AI is good at and what it is not.
+
+AI dramatically reduces the amount of time spent writing boilerplate code. Features that might have previously taken several hours can often be implemented much faster.
+
+However, I found that the quality of the output was heavily dependent on the quality of the architecture behind it.
+
+The biggest leverage came from:
+
+- Well-designed database schemas
+- Clearly defined API contracts
+- Thoughtful product requirements
+- Strong system boundaries
+
+When those pieces were in place, AI became incredibly effective.
+
+When they were not, AI just generated technical debt and bloated the code base faster.
+
+The project also gave me hands-on experience with:
+
+- End-to-end product development
+- API design
+- Database architecture
+- CI/CD pipelines
+- Cloud infrastructure
+
+---
+
+# Future Improvements
+
+Some areas I am currently exploring include:
+
+- Recurring transactions
+- Better shared budgeting experiences
+- Enhanced import capabilities
+- More intelligent spending insights
