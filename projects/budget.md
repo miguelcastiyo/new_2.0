@@ -8,7 +8,7 @@ While AI significantly accelerated development, this project reinforced somethin
 
 The app is currently invite-only while I continue to iterate and improve the experience.
 
-# Background
+## Background
 
 My partner and I tracked our spending using a shared Google Sheet for a while.
 
@@ -24,7 +24,7 @@ Instead, I wanted to build something focused on a simple question:
 
 That goal heavily influenced every product decision that followed.
 
-# Product Philosophy
+## Product Philosophy
 
 The core principle behind my budget app is simplicity.
 
@@ -42,20 +42,20 @@ I wanted Budget to focus on the fundamentals:
 
 If an additional feature made the product harder to understand or maintain without providing significant value, it was usually left out.
 
-# Key Features
+## Key Features
 
-## Mobile-First Design
+### Mobile-First Design
 
 The application was designed mobile-first so that entering a transaction takes only a few seconds.
 
 Many desktop interactions adapt into mobile trays and bottom sheets rather than traditional modal windows, helping the experience feel more natural on smaller screens.
 
-## Google Sign-In
+### Google Sign-In
 
 Authentication is handled through Google Sign-In.
 This removes the need to manage passwords.
 
-## Transaction Management
+### Transaction Management
 
 At its core, Budget is a transaction tracking application.
 
@@ -71,7 +71,7 @@ Users can:
 
 A significant amount of effort went into making transaction entry feel fast while still collecting enough information to generate useful insights later.
 
-## Budget Planning
+### Budget Planning
 
 Users can define monthly spending targets and organize their finances using the 50/30/20 budgeting framework.
 
@@ -83,7 +83,7 @@ I have always appreciated the simplicity of the 50/30/20 approach:
 
 Rather than overwhelming users with dozens of financial categories and rules, the application provides a straightforward framework that is easy to understand and maintain.
 
-## Spending Insights
+### Spending Insights
 
 The application automatically generates spending breakdowns and visualizations that help answer questions such as:
 
@@ -94,14 +94,14 @@ The application automatically generates spending breakdowns and visualizations t
 
 The emphasis is on surfacing actionable information rather than overwhelming users with data.
 
-## CSV Import & Export
+### CSV Import & Export
 
 Importing historical transactions was important because I was migrating years of budgeting data from spreadsheets.
 
 Users can import transaction data from external sources and export their data whenever needed.
 I really like the way Notion guides users through importing database tables. I took inspiration from that to support flexible column mapping so users are not forced into a rigid file format when exporrting.
 
-# Architecture & Technical Decisions
+## Architecture & Technical Decisions
 
 One of the biggest decisions I made was to build the backend first.
 
@@ -117,9 +117,9 @@ Once the API layer was stable, I built and tested endpoints through Postman befo
 
 This approach created clear boundaries between systems and made front-end development significantly easier because the interfaces were built against stable API contracts rather than constantly changing requirements.
 
-# Tech Stack
+## Tech Stack
 
-## Backend
+### Backend
 
 - Vanilla PHP
 - MySQL
@@ -135,14 +135,14 @@ The backend handles:
 
 I particularly enjoyed designing the database architecture for this project. While databases are rarely the most visible part of an application, they often determine how maintainable and extensible the product becomes over time.
 
-## Front End
+### Front End
 
 - TypeScript
 - Node.js
 
 The front end consumes the backend APIs and provides the budgeting experience across desktop and mobile devices.
 
-## Infrastructure & Tooling
+### Infrastructure & Tooling
 
 - AWS Lightsail
 - Google Authentication
@@ -158,7 +158,7 @@ One of the more valuable skills I picked up during this project was working with
 
 Automated deployments have made it much easier to ship updates, test changes, and maintain separate development and production environments.
 
-# Lessons Learned
+## Lessons Learned
 
 This project taught me a lot about what AI is good at and what it is not.
 
@@ -185,7 +185,7 @@ The project also gave me hands-on experience with:
 - CI/CD pipelines
 - Cloud infrastructure
 
-# Future Improvements
+## Future Improvements
 
 Some areas I am currently exploring include:
 
